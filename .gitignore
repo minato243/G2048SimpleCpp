@@ -1,0 +1,8 @@
+bin/
+proj.win32/Debug.win32/
+cocos2d/tools/simulator/
+cocos2d/cocos/2d/Debug.win32/
+proj.ios_mac/
+cocos2d/
+proj.win32/G4096.sdf
+proj.win32/G4096.opensdf
