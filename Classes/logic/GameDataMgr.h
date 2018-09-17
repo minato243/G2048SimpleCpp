@@ -28,8 +28,8 @@ public:
 	void updateHighScore(int score, int title);
 	void loadHighScore();
 
-	static string getCache(string key, string defaultValue);
-	static void saveCache(string key, string value);
+	static std::string getCache(std::string key, std::string defaultValue);
+	static void saveCache(std::string key, std::string value);
 	static GameDataMgr *getInstance();
 };
 #endif

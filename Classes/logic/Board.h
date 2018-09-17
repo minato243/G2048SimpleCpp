@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "cocos2d.h"
+#include <string>
 
 using namespace std;
 USING_NS_CC;
@@ -21,6 +22,7 @@ public:
 	int score;
 	bool isCanUndo;
 	vector<CCPoint> mergePosList;
+	bool isCongrate;
 	
 	Board(int size);
 	~Board();

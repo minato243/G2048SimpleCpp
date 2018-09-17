@@ -2,9 +2,11 @@
 #include "cocostudio\ActionTimeline\CSLoader.h"
 #include "ui\UIButton.h"
 #include "SceneManager.h"
-#include "GameConstant.h"
+#include "base\GameConstant.h"
 #include "dragonBones\parser\JSONDataParser.h"
 #include "dragonBones\cocos2dx\CCFactory.h"
+#include "base\PlatformUtils.h"
+#include "base\SoundManager.h"
 
 Scene * MainScene::createScene()
 {
@@ -50,21 +52,12 @@ bool MainScene::init()
 	highScoreButton->setPressedActionEnabled(true);
 	highScoreButton->addClickEventListener(CC_CALLBACK_1(MainScene::onHighScore, this));
 
+	PlatformUtils::getInstance()->signInGoogle();
+
+	PlatformUtils::getInstance()->initBanner();
+	PlatformUtils::getInstance()->showBanner();
 	
-	const auto factory = dragonBones::CCFactory::getFactory();
-	//factory->loadDragonBonesData("mecha_1002_101d_show/mecha_1002_101d_show_ske.json");
-	//factory->loadDragonBonesData("mecha_1002_101d_show/mecha_1002_101d_show_ske.dbbin");
-	//factory->loadTextureAtlasData("mecha_1002_101d_show/mecha_1002_101d_show_tex.json");
-	//const auto armatureDisplay = factory->buildArmatureDisplay("mecha_1002_101d", "mecha_1002_101d_show");
-	//armatureDisplay->getAnimation()->play("idle");
-
-	//armatureDisplay->setPosition(0.0f, -200.0f);
-	//addChild(armatureDisplay);
-
-	//factory->loadDragonBonesData("skeleton_ske.json");
-	//factory->loadTextureAtlasData("skeleton_tex.json");
-	//const auto armatureDisplay = factory->buildArmatureDisplay("Win");
-	//addChild(armatureDisplay);
+	this->addKeyBoardListener();
 
 	return true;
 }
@@ -76,16 +69,47 @@ void MainScene::loadResource()
 
 void MainScene::onRate(Ref *obj)
 {
-
+	SoundManager::playClickSound();
+	PlatformUtils::getInstance()->rateApp();
 }
 
 void MainScene::onHighScore(Ref *obj)
 {
-
+	SoundManager::playClickSound();
+	PlatformUtils::getInstance()->showHighScore();
 }
 
 void MainScene::onPlay(Ref *obj)
 {
+	SoundManager::playClickSound();
 	SceneManager::getInstance()->changeScene(PLAY_SCENE);
+}
+
+void MainScene::addKeyBoardListener()
+{
+	auto listener = EventListenerKeyboard::create();
+	listener->onKeyPressed = CC_CALLBACK_2(MainScene::onKeyPressed, this);
+	listener->onKeyReleased = CC_CALLBACK_2(MainScene::onKeyReleased, this);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+}
+
+void MainScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
+{
+	log("Key with key code %d pressed", keyCode);
+	if (keyCode == EventKeyboard::KeyCode::KEY_BACKSPACE || keyCode == EventKeyboard::KeyCode::KEY_BACK) {
+		this->onBackPress();
+	}
+}
+
+void MainScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
+{
+	log("Key with key code %d released", keyCode);
+
+}
+
+void MainScene::onBackPress()
+{
+	CCDirector::getInstance()->end();
 }
 

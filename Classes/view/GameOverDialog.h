@@ -2,7 +2,7 @@
 #define GameOverDialog_h__
 
 #include "cocos2d.h"
-#include "BasePopupDialog.h"
+#include "base\BasePopupDialog.h"
 #include "ui\UIButton.h"
 #include "PlayScene.h"
 

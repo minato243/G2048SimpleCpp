@@ -1,28 +1,10 @@
 #include "GameOverDialog.h"
 #include "cocostudio\ActionTimeline\CSLoader.h"
-#include "GameConstant.h"
+#include "base\GameConstant.h"
 #include "SceneManager.h"
 
 GameOverDialog::GameOverDialog(){
 	CCLOG("new GameOverDialog");
-	Node* node = CSLoader::createNode("GameOverDialog.csb");
-	this->addChild(node);
-	this->bgImage = node->getChildByName("bgImage");
-	auto bgImage = this->bgImage;
-	auto bgMessage = bgImage->getChildByName("bg_message");
-	this->scoreLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_score"));
-	this->numberLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_title"));
-	this->bestScoreLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_best_score"));
-	this->bestTitleLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_best_title"));
-
-	this->restartButton = dynamic_cast<ui::Button *>(bgImage->getChildByName("btn_restart"));
-	this->restartButton->addClickEventListener(CC_CALLBACK_1(GameOverDialog::onRestart, this));
-	this->homeButton = dynamic_cast<ui::Button *>(bgImage->getChildByName("btn_home"));
-	this->homeButton->addClickEventListener(CC_CALLBACK_1(GameOverDialog::onHome, this));
-
-	this->shareButton = dynamic_cast<ui::Button *>(bgImage->getChildByName("btn_share"));
-	this->shareButton->addClickEventListener(CC_CALLBACK_1(GameOverDialog::onHome, this));
-
 }
 
 
@@ -83,7 +65,7 @@ bool GameOverDialog::init()
 {
 	if(!BasePopupDialog::init())
 		return false;
-	Node* node = CSLoader::createNode("MenuScene.csb");
+	Node* node = CSLoader::createNode("GameOverDialog.csb");
 	this->addChild(node);
 	this->bgImage = node->getChildByName("bgImage");
 	auto bgImage = this->bgImage;
@@ -106,7 +88,7 @@ GameOverDialog* gameOverDialogInstance = NULL;
 GameOverDialog * GameOverDialog::getInstance()
 {
 	if (gameOverDialogInstance == NULL){
-		gameOverDialogInstance = new GameOverDialog();
+		gameOverDialogInstance = GameOverDialog::create();
 		gameOverDialogInstance->retain();
 	}
 	return gameOverDialogInstance;

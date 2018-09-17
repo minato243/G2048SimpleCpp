@@ -13,3 +13,4 @@
 
 #define LAYER_DIALOG 1000
 #define LAYER_PLAY 100
+#define CONGRAT_NUM 8

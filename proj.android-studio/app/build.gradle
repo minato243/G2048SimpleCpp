@@ -3,12 +3,12 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion PROP_COMPILE_SDK_VERSION.toInteger()
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.moc.g2048"
-        minSdkVersion PROP_MIN_SDK_VERSION
+        minSdkVersion 15
         targetSdkVersion PROP_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"
@@ -94,6 +94,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':libcocos2dx')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':libcocos2dx')
+    api 'com.google.android.gms:play-services-auth:11.8.0'
+    api 'com.google.android.gms:play-services-ads:11.8.0'
+    api 'com.google.android.gms:play-services-games:11.8.0'
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 }

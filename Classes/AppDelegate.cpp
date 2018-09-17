@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "MainScene.h"
+#include "view\MainScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1

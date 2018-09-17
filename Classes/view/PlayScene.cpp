@@ -2,11 +2,13 @@
 #include "cocostudio\ActionTimeline\CSLoader.h"
 #include "base\ccMacros.h"
 #include "SceneManager.h"
-#include "GameConstant.h"
 #include "deprecated\CCDeprecated.h"
-#include "GameDataMgr.h"
 #include "base\CCEventKeyboard.h"
 #include "GameOverDialog.h"
+#include "view\CongratDialog.h"
+#include "base\PlatformUtils.h"
+#include "base\GameConstant.h"
+#include "base\SoundManager.h"
 
 using namespace ui;
 
@@ -42,6 +44,7 @@ bool PlayScene::init()
 
 	this->initGui();
 	this->addListener();
+	this->addKeyBoardListener();
 
 	return true;
 }
@@ -49,6 +52,7 @@ bool PlayScene::init()
 void PlayScene::onClickHome(Ref* obj)
 {
 	CCLOG("onClickHome");
+	SoundManager::playClickSound();
 	this->onBackPress();
 }
 
@@ -252,6 +256,7 @@ void PlayScene::showMoveEffect(int dir)
 		this->updateData();
 		this->isMoving = false;
 		CCLOG("showMoveEffect error isMoving");
+		if (this->board->isCongrate) this->showCongratDialog();
 	}
 	else if (this->isSpawning) {
 		this->board->addNewNumber();
@@ -559,6 +564,7 @@ void PlayScene::moveEffectComplete(){
 			this->spawnEffect(pos);
 			this->mergeEffect();
 		}
+		if (this->board->isCongrate) this->showCongratDialog();
 
 	}
 }
@@ -623,8 +629,8 @@ void PlayScene::gameOver()
 	CCLOG("game Over");
 	GameOverDialog::destroyInstance();
 	GameOverDialog::getInstance()->startDialog(this->board->score, this->board->getMaxNumber(), this);
-	//PlatformUtils::getInstance()->updateLeaderBoard(this->gameData->mode, this->board->score);
-	//PlatformUtils::getInstance()->showInterstitialAd();
+	PlatformUtils::getInstance()->updateLeaderBoard(this->gameData->mode, this->board->score);
+	PlatformUtils::getInstance()->showInterstitialAd();
 	this->gameData->saveData(this->gameData->mode, "");
 }
 
@@ -633,5 +639,10 @@ void PlayScene::createNewGame()
 	this->board->createNewMatrix();
 	this->initListNumber();
 	this->updateData();
+}
+
+void PlayScene::showCongratDialog()
+{
+	CongratDialog::getInstance()->startDialog(this);
 }
 

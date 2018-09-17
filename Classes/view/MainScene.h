@@ -18,7 +18,10 @@ public:
 	void onRate(Ref *obj);
 	void onHighScore(Ref *obj);
 	void onPlay(Ref *obj);
-
+	void addKeyBoardListener();
+	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
+	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
+	void onBackPress();
 protected:
 private:
 };

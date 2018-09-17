@@ -4,15 +4,15 @@
 #include "cocos2d.h"
 #include "2d\CCLabelBMFont.h"
 #include "ui\UIButton.h"
-#include "GameDataMgr.h"
-#include "Board.h"
+#include "logic\GameDataMgr.h"
+#include "logic\Board.h"
 #include "deprecated\CCDeprecated.h"
 #include "2d\CCLabel.h"
 #include "ui\UITextBMFont.h"
 #include "math\Vec2.h"
 
-USING_NS_CC;
 using namespace std;
+USING_NS_CC;
 
 class PlayScene : public Scene{
 public:
@@ -75,5 +75,7 @@ public:
 	void saveCurrentData();
 	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
 	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
+
+	void showCongratDialog();
 };
 #endif

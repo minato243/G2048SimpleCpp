@@ -1,8 +1,9 @@
 #include "SceneManager.h"
 #include "ExtensionExport.h"
-#include "GameConstant.h"
+#include "base\GameConstant.h"
 #include "PlayScene.h"
 #include "MainScene.h"
+#include "base\PlatformUtils.h"
 
 
 SceneManager *sceneMgrInstance = NULL;
@@ -27,10 +28,12 @@ void SceneManager::changeScene(int sceneId)
 	case PLAY_SCENE:
 		this->currentScene = PlayScene::createScene();
 		Director::getInstance()->replaceScene(TransitionSlideInB::create(0.5, this->currentScene));
+		PlatformUtils::getInstance()->showInterstitialAd();
 		break;
 	case MENU_SCENE:
 		this->currentScene = MainScene::createScene();
 		Director::getInstance()->replaceScene(TransitionSlideInT::create(0.5, this->currentScene));
+		PlatformUtils::getInstance()->showInterstitialAd();
 		break;
 		
 	default:

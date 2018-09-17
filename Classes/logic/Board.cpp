@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "base\GameConstant.h"
 
 Board::Board(int size)
 {
@@ -104,6 +105,7 @@ bool Board::move(int direct){
 	this->mergePosList.clear();
 
 	bool hasMoved = false;
+	this->isCongrate = false;
 	switch (direct){
 	case LEFT:
 		hasMoved = this->moveLeft();
@@ -152,8 +154,12 @@ bool Board::moveLeft() {
 				for (int k = j + 1; k < size; k++) {
 					if (this->matrix[i][k] != 0) {
 						if (this->matrix[i][k] == this->matrix[i][j]) {
+							int lastMaxNumber = this->getMaxNumber();
 							this->matrix[i][j] += this->matrix[i][k];
 							this->matrix[i][k] = 0;
+							if (this->matrix[i][j] == CONGRAT_NUM && lastMaxNumber < CONGRAT_NUM){
+								this->isCongrate = true;
+							}
 							this->addToMergePosList(ccp(i, j));
 							this->addScore(this->matrix[i][j]);
 							hasMoved = true;
@@ -190,8 +196,12 @@ bool Board::moveRight() {
 				for (int k = j - 1; k >= 0; k--) {
 					if (this->matrix[i][k] != 0) {
 						if (this->matrix[i][k] == this->matrix[i][j]){
+							int lastMaxNumber = this->getMaxNumber();
 							this->matrix[i][j] += this->matrix[i][k];
 							this->matrix[i][k] = 0;
+							if (this->matrix[i][j] == CONGRAT_NUM && lastMaxNumber < CONGRAT_NUM){
+								this->isCongrate = true;
+							}
 							this->addScore(this->matrix[i][j]);
 							this->addToMergePosList(ccp(i, j));
 							hasMoved = true;
@@ -209,40 +219,44 @@ bool Board::moveRight() {
 }
 
 bool Board::moveUp() {
-CCLOG("moveUp");
-int size = this->size;
+	CCLOG("moveUp");
+	int size = this->size;
 
-bool hasMoved = false;
-for (int j = 0; j < size; j++) {
-	for (int i = 0; i < size; i++) {
-		if (this->matrix[i][j] == 0 ) {
-			for (int k = i + 1; k < size; k++) {
-				if (this->matrix[k][j] != 0) {
-					this->matrix[i][j] = this->matrix[k][j];
-					this->matrix[k][j] = 0;
-					hasMoved = true;
-					break;
-				}
-			}
-		}
-		if (this->matrix[i][j] != 0) {
-			for (int k = i + 1; k < size; k++) {
-				if (this->matrix[k][j] != 0) {
-					if (this->matrix[k][j] == this->matrix[i][j]){
-						this->matrix[i][j] += this->matrix[k][j];
+	bool hasMoved = false;
+	for (int j = 0; j < size; j++) {
+		for (int i = 0; i < size; i++) {
+			if (this->matrix[i][j] == 0 ) {
+				for (int k = i + 1; k < size; k++) {
+					if (this->matrix[k][j] != 0) {
+						this->matrix[i][j] = this->matrix[k][j];
 						this->matrix[k][j] = 0;
-						this->addScore(this->matrix[i][j]);
-						this->addToMergePosList(ccp(i, j));
 						hasMoved = true;
+						break;
 					}
-					break;
 				}
 			}
-		}
+			if (this->matrix[i][j] != 0) {
+				for (int k = i + 1; k < size; k++) {
+					if (this->matrix[k][j] != 0) {
+						if (this->matrix[k][j] == this->matrix[i][j]){
+							int lastMaxNumber = this->getMaxNumber();
+							this->matrix[i][j] += this->matrix[k][j];
+							this->matrix[k][j] = 0;
+							if (this->matrix[i][j] == CONGRAT_NUM && lastMaxNumber < CONGRAT_NUM){
+								this->isCongrate = true;
+							}
+							this->addScore(this->matrix[i][j]);
+							this->addToMergePosList(ccp(i, j));
+							hasMoved = true;
+						}
+						break;
+					}
+				}
+			}
 
+		}
 	}
-}
-return hasMoved;
+	return hasMoved;
 }
 
 bool Board::moveDown() {
@@ -266,8 +280,12 @@ bool Board::moveDown() {
 				for (int k = i - 1; k >= 0; k--) {
 					if (this->matrix[k][j] != 0) {
 						if (this->matrix[k][j] == this->matrix[i][j]){
+							int lastMaxNumber = this->getMaxNumber();
 							this->matrix[i][j] += this->matrix[k][j];
 							this->matrix[k][j] = 0;
+							if (this->matrix[i][j] == CONGRAT_NUM && lastMaxNumber < CONGRAT_NUM){
+								this->isCongrate = true;
+							}
 							this->addScore(this->matrix[i][j]);
 							this->addToMergePosList(ccp(i, j));
 							hasMoved = true;

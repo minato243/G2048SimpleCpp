@@ -149,8 +149,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\BasePopupDialog.cpp" />
-    <ClCompile Include="..\Classes\Board.cpp" />
+    <ClCompile Include="..\Classes\base\BasePopupDialog.cpp" />
+    <ClCompile Include="..\Classes\base\PlatformUtils.cpp" />
+    <ClCompile Include="..\Classes\base\SoundManager.cpp" />
+    <ClCompile Include="..\Classes\base\Utility.cpp" />
     <ClCompile Include="..\Classes\dragonBones\animation\Animation.cpp" />
     <ClCompile Include="..\Classes\dragonBones\animation\AnimationState.cpp" />
     <ClCompile Include="..\Classes\dragonBones\animation\BaseTimelineState.cpp" />
@@ -186,22 +188,24 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\dragonBones\parser\BinaryDataParser.cpp" />
     <ClCompile Include="..\Classes\dragonBones\parser\DataParser.cpp" />
     <ClCompile Include="..\Classes\dragonBones\parser\JSONDataParser.cpp" />
-    <ClCompile Include="..\Classes\GameDataMgr.cpp" />
-    <ClCompile Include="..\Classes\GameOverDialog.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
-    <ClCompile Include="..\Classes\MainScene.cpp" />
-    <ClCompile Include="..\Classes\MessageDialog.cpp" />
-    <ClCompile Include="..\Classes\PlatformUtil.cpp" />
-    <ClCompile Include="..\Classes\PlayScene.cpp" />
-    <ClCompile Include="..\Classes\SceneManager.cpp" />
-    <ClCompile Include="..\Classes\SoundManager.cpp" />
-    <ClCompile Include="..\Classes\Utility.cpp" />
+    <ClCompile Include="..\Classes\logic\Board.cpp" />
+    <ClCompile Include="..\Classes\logic\GameDataMgr.cpp" />
+    <ClCompile Include="..\Classes\view\CongratDialog.cpp" />
+    <ClCompile Include="..\Classes\view\GameOverDialog.cpp" />
+    <ClCompile Include="..\Classes\view\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\view\MainScene.cpp" />
+    <ClCompile Include="..\Classes\view\MessageDialog.cpp" />
+    <ClCompile Include="..\Classes\view\PlayScene.cpp" />
+    <ClCompile Include="..\Classes\view\SceneManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\BasePopupDialog.h" />
-    <ClInclude Include="..\Classes\Board.h" />
+    <ClInclude Include="..\Classes\base\BasePopupDialog.h" />
+    <ClInclude Include="..\Classes\base\GameConstant.h" />
+    <ClInclude Include="..\Classes\base\PlatformUtils.h" />
+    <ClInclude Include="..\Classes\base\SoundManager.h" />
+    <ClInclude Include="..\Classes\base\Utility.h" />
     <ClInclude Include="..\Classes\dragonBones\animation\Animation.h" />
     <ClInclude Include="..\Classes\dragonBones\animation\AnimationState.h" />
     <ClInclude Include="..\Classes\dragonBones\animation\BaseTimelineState.h" />
@@ -245,14 +249,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\dragonBones\parser\BinaryDataParser.h" />
     <ClInclude Include="..\Classes\dragonBones\parser\DataParser.h" />
     <ClInclude Include="..\Classes\dragonBones\parser\JSONDataParser.h" />
-    <ClInclude Include="..\Classes\GameConstant.h" />
-    <ClInclude Include="..\Classes\GameDataMgr.h" />
-    <ClInclude Include="..\Classes\GameOverDialog.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
-    <ClInclude Include="..\Classes\MainScene.h" />
-    <ClInclude Include="..\Classes\MessageDialog.h" />
-    <ClInclude Include="..\Classes\PlatformUtil.h" />
-    <ClInclude Include="..\Classes\PlayScene.h" />
+    <ClInclude Include="..\Classes\logic\Board.h" />
+    <ClInclude Include="..\Classes\logic\GameDataMgr.h" />
     <ClInclude Include="..\Classes\rapidjson\allocators.h" />
     <ClInclude Include="..\Classes\rapidjson\document.h" />
     <ClInclude Include="..\Classes\rapidjson\encodedstream.h" />
@@ -289,9 +287,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\rapidjson\stringbuffer.h" />
     <ClInclude Include="..\Classes\rapidjson\writer.h" />
     <ClInclude Include="..\Classes\resource.h" />
-    <ClInclude Include="..\Classes\SceneManager.h" />
-    <ClInclude Include="..\Classes\SoundManager.h" />
-    <ClInclude Include="..\Classes\Utility.h" />
+    <ClInclude Include="..\Classes\view\CongratDialog.h" />
+    <ClInclude Include="..\Classes\view\GameOverDialog.h" />
+    <ClInclude Include="..\Classes\view\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\view\MainScene.h" />
+    <ClInclude Include="..\Classes\view\MessageDialog.h" />
+    <ClInclude Include="..\Classes\view\PlayScene.h" />
+    <ClInclude Include="..\Classes\view\SceneManager.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

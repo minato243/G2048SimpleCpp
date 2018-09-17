@@ -23,9 +23,16 @@ THE SOFTWARE.
 ****************************************************************************/
 package org.cocos2dx.cpp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.moc.g2048.AdmobHelper;
+import com.moc.g2048.AndroidUtils;
+
 import org.cocos2dx.lib.Cocos2dxActivity;
+import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 public class AppActivity extends Cocos2dxActivity {
 
@@ -42,7 +49,33 @@ public class AppActivity extends Cocos2dxActivity {
             return;
         }
         // DO OTHER INITIALIZATION BELOW
-        
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+    }
+
+    public Cocos2dxGLSurfaceView onCreateView() {
+        AndroidUtils.instance = new AndroidUtils(this);
+        //AppRater.showRateDialog(this);
+
+        AdmobHelper admobHelper = new AdmobHelper();
+        admobHelper.init(this);
+        AndroidUtils.instance.setAdmobHelper(admobHelper);
+        return super.onCreateView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        AndroidUtils.instance.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AndroidUtils.instance.onResume();
     }
 
 }

@@ -1,6 +1,6 @@
 /*Created by thaod*/
 #include "GameDataMgr.h"
-#include "GameConstant.h"
+#include "base\GameConstant.h"
 
 #define GAME_DATA_KEY "game_data"
 #define HIGH_SCORE_KEY "game_high_score"
@@ -59,7 +59,7 @@ void GameDataMgr::saveData(int mode, std::string dataStr)
 void GameDataMgr::saveHighScore()
 {
 	GameDataMgr::saveCache(HIGH_SCORE_KEY + this->mode, StringUtils::toString(this->highScore));
-	GameDataMgr::saveCache(HIGH_TITLE_KEY + this->mode, StringUtils::toString(this->highScore));
+	GameDataMgr::saveCache(HIGH_TITLE_KEY + this->mode, StringUtils::toString(this->bestTitle));
 }
 
 void GameDataMgr::updateHighScore(int score, int title)

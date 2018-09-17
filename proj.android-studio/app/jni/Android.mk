@@ -13,8 +13,10 @@ LOCAL_MODULE_FILENAME := libMyGame
 
 LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
                    $(LOCAL_PATH)/../../../Classes/AppDelegate.cpp\
-                   $(LOCAL_PATH)/../../../Classes/BasePopupDialog.cpp\
-                   $(LOCAL_PATH)/../../../Classes/Board.cpp\
+                   $(LOCAL_PATH)/../../../Classes/base/BasePopupDialog.cpp\
+                   $(LOCAL_PATH)/../../../Classes/base/PlatformUtils.cpp\
+                   $(LOCAL_PATH)/../../../Classes/base/SoundManager.cpp\
+                   $(LOCAL_PATH)/../../../Classes/base/Utility.cpp\
                    $(LOCAL_PATH)/../../../Classes/dragonBones/animation/Animation.cpp\
                    $(LOCAL_PATH)/../../../Classes/dragonBones/animation/AnimationState.cpp\
                    $(LOCAL_PATH)/../../../Classes/dragonBones/animation/BaseTimelineState.cpp\
@@ -50,17 +52,15 @@ LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
                    $(LOCAL_PATH)/../../../Classes/dragonBones/parser/BinaryDataParser.cpp\
                    $(LOCAL_PATH)/../../../Classes/dragonBones/parser/DataParser.cpp\
                    $(LOCAL_PATH)/../../../Classes/dragonBones/parser/JSONDataParser.cpp\
-                   $(LOCAL_PATH)/../../../Classes/GameDataMgr.cpp\
-                   $(LOCAL_PATH)/../../../Classes/GameOverDialog.cpp\
-                   $(LOCAL_PATH)/../../../Classes/HelloWorldScene.cpp\
-                   $(LOCAL_PATH)/../../../Classes/MainScene.cpp\
-                   $(LOCAL_PATH)/../../../Classes/MessageDialog.cpp\
-                   $(LOCAL_PATH)/../../../Classes/PlatformUtil.cpp\
-                   $(LOCAL_PATH)/../../../Classes/PlayScene.cpp\
-                   $(LOCAL_PATH)/../../../Classes/SceneManager.cpp\
-                   $(LOCAL_PATH)/../../../Classes/SoundManager.cpp\
-                   $(LOCAL_PATH)/../../../Classes/Utility.cpp\
-
+                   $(LOCAL_PATH)/../../../Classes/logic/Board.cpp\
+                   $(LOCAL_PATH)/../../../Classes/logic/GameDataMgr.cpp\
+                   $(LOCAL_PATH)/../../../Classes/view/CongratDialog.cpp\
+                   $(LOCAL_PATH)/../../../Classes/view/GameOverDialog.cpp\
+                   $(LOCAL_PATH)/../../../Classes/view/HelloWorldScene.cpp\
+                   $(LOCAL_PATH)/../../../Classes/view/MainScene.cpp\
+                   $(LOCAL_PATH)/../../../Classes/view/MessageDialog.cpp\
+                   $(LOCAL_PATH)/../../../Classes/view/PlayScene.cpp\
+                   $(LOCAL_PATH)/../../../Classes/view/SceneManager.cpp\
 
 
 LOCAL_SRC_FILES += $(FILE_LIST:$(LOCAL_PATH)/%=%)
