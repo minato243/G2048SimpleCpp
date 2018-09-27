@@ -27,7 +27,9 @@ def copy_file_in_folder (srcFolder, desFolder):
 			copy_file_in_folder(src_file, dst_file)
 
 def main():
-	deleteFolderIfExist(dst_dir)
+	x = raw_input("Delete old res(y/n):")
+	if(x == 'Y' or x == 'y'):
+		deleteFolderIfExist(dst_dir)
 	createFolderIfNoExist(dst_dir)
 	copy_file_in_folder(src_dir, dst_dir)
 	

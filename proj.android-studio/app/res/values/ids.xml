@@ -2,10 +2,10 @@
 <resources
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
-    <string name="app_id">341628760588</string>
-    <string name="leader_board_id">CgkIjOSk1fgJEAIQAg</string>
+    <string name="app_id">25776384210</string>
+    <string name="leader_board_id">CggI0tGRg2AQAhAB</string>
     <string name="leader_board_id_small">CgkIjOSk1fgJEAIQAQ</string>
-    <string name="leader_board_id_classic">CgkIjOSk1fgJEAIQAg</string>
+    <string name="leader_board_id_classic">CggI0tGRg2AQAhAB</string>
     <string name="leader_board_id_big">CgkIjOSk1fgJEAIQAw</string>
     <string name="leader_board_id_bigger">CgkIjOSk1fgJEAIQBA</string>
     <string name="leader_board_id_huge"> CgkIjOSk1fgJEAIQBQ</string>
@@ -14,10 +14,10 @@
     <string name="achievement_professional">CgkIjtDkxsofEAIQAw</string>
     <string name="achievement_expert">CgkIjtDkxsofEAIQAQ</string>
     <string name="achievement_master">CgkIjtDkxsofEAIQAQ</string>
-    <string name="admob_app_id">ca-app-pub-5949858220228619~7270315666</string>
-    <string name="admob_banner">ca-app-pub-5949858220228619/6448188588</string>
-    <string name="admob_interstitial">ca-app-pub-5949858220228619/4560391840</string>
-    <string name="admob_video_reward">ca-app-pub-5949858220228619/8549923533</string>
+    <string name="admob_app_id">ca-app-pub-7221552393685442~4448525794</string>
+    <string name="admob_banner">ca-app-pub-7221552393685442/2878748664</string>
+    <string name="admob_interstitial">ca-app-pub-7221552393685442/1182523616</string>
+    <string name="admob_video_reward">ca-app-pub-7221552393685442/5860135224</string>
 
     <string name="facebook_app_id">479907342421277</string>
 </resources>

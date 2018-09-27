@@ -58,8 +58,8 @@ void GameDataMgr::saveData(int mode, std::string dataStr)
 
 void GameDataMgr::saveHighScore()
 {
-	GameDataMgr::saveCache(HIGH_SCORE_KEY + this->mode, StringUtils::toString(this->highScore));
-	GameDataMgr::saveCache(HIGH_TITLE_KEY + this->mode, StringUtils::toString(this->bestTitle));
+	GameDataMgr::saveCache(string(HIGH_SCORE_KEY) + StringUtils::toString(this->mode), StringUtils::toString(this->highScore));
+	GameDataMgr::saveCache(string(HIGH_TITLE_KEY) + StringUtils::toString(this->mode), StringUtils::toString(this->bestTitle));
 }
 
 void GameDataMgr::updateHighScore(int score, int title)

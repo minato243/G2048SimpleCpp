@@ -9,9 +9,9 @@ android {
     defaultConfig {
         applicationId "com.moc.g2048"
         minSdkVersion 15
-        targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 26
+        versionCode 4
+        versionName "1.2.1"
 
         externalNativeBuild {
             ndkBuild {

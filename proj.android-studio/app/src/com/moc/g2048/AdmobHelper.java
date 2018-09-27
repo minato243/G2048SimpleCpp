@@ -41,9 +41,10 @@ public class AdmobHelper {
         mAdview.setAdUnitId(ctx.getString(R.string.admob_banner));
 
         AdRequest.Builder adBuilder= new AdRequest.Builder();
-        adBuilder.addTestDevice("993506BA4FF721BF445E7A8054214C6F");
+        adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
         AdRequest adRequest = adBuilder.build();
         mAdview.loadAd(adRequest);
+
 
         mAdview.setAdListener(new AdListener() {
             @Override
@@ -79,7 +80,9 @@ public class AdmobHelper {
 
     private void initVideoReward(final Context ctx){
         mRewardVideoAd = MobileAds.getRewardedVideoAdInstance(ctx);
-        mRewardVideoAd.loadAd(ctx.getString(R.string.admob_video_reward), new AdRequest.Builder().build());
+        AdRequest.Builder adBuilder = new AdRequest.Builder();
+        adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
+        mRewardVideoAd.loadAd(ctx.getString(R.string.admob_video_reward), adBuilder.build());
         mRewardVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
 
             @Override
@@ -127,7 +130,9 @@ public class AdmobHelper {
     private void initInterstitial(final Context ctx){
         mInterstitialAd = new InterstitialAd(ctx);
         mInterstitialAd.setAdUnitId(ctx.getString(R.string.admob_interstitial));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        AdRequest.Builder adBuilder = new AdRequest.Builder();
+        adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
+        mInterstitialAd.loadAd(adBuilder.build());
 
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
@@ -147,6 +152,7 @@ public class AdmobHelper {
     }
 
     public void showInterstitialAd(){
+        Log.d(TAG, "The showInterstitialAd.");
         if(mInterstitialAd.isLoaded()){
             mInterstitialAd.show();
         } else{

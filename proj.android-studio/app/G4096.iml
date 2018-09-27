@@ -36,6 +36,9 @@
     <content url="file://$MODULE_DIR$/../../Classes">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../Classes/base">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/base" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Classes/dragonBones/animation">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/dragonBones/animation" isTestSource="false" />
     </content>
@@ -62,6 +65,9 @@
     </content>
     <content url="file://$MODULE_DIR$/../../Classes/dragonBones/parser">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/dragonBones/parser" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../Classes/logic">
+      <sourceFolder url="file://$MODULE_DIR$/../../Classes/logic" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/../../Classes/view">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes/view" isTestSource="false" />
@@ -434,6 +440,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
@@ -446,7 +453,6 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable-27.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks-license-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-games-11.8.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-core-4.36.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils-27.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-drive-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth-api-phone-license-11.8.0" level="project" />
@@ -454,9 +460,9 @@
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement-license-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-games-license-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-gass-11.8.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-places-4.36.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-places-4.36.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-messenger-4.36.1" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:D.\workspace_cocos\G4096\cocos2d\cocos\platform\android\java\libs\EngineDataManager.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-messenger-4.36.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth-base-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-v4-27.0.2" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:D.\workspace_cocos\G4096\cocos2d\cocos\platform\android\java\libs\httpclient-4.4.1.1.jar:unspecified@jar" level="project" />
@@ -469,26 +475,27 @@
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-drive-license-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.parse.bolts:bolts-applinks:1.4.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.0.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-common-4.36.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-common-4.36.1" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-media-compat-27.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-ui-27.0.2" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-marketing-4.36.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-login-4.36.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-marketing-4.36.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-login-4.36.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:27.0.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-lite-license-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:D.\workspace_cocos\G4096\cocos2d\cocos\platform\android\java\libs\android-async-http-1.4.9.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment-27.0.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-core-4.36.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base-license-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7-27.0.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-android-sdk-4.36.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-lite-11.8.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-11.8.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-android-sdk-4.36.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-share-4.36.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks-11.8.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-share-4.36.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth-11.8.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-applinks-4.36.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.facebook.android:facebook-applinks-4.36.1" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:runtime-1.0.3" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:common:1.0.3@jar" level="project" />
     <orderEntry type="module" module-name="libcocos2dx" />

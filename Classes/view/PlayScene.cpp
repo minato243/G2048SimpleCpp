@@ -560,7 +560,7 @@ void PlayScene::moveEffectComplete(){
 		this->updateData();
 		if (moved) {
 			Vec2 pos = this->board->addNewNumber();
-			//SoundManager::playMoveSound();
+			SoundManager::playMoveSound();
 			this->spawnEffect(pos);
 			this->mergeEffect();
 		}

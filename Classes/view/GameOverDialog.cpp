@@ -44,7 +44,7 @@ void GameOverDialog::setCallBackFunc(CCCallFunc *callBackFunc){
 
 
 void GameOverDialog::onRestart(Ref *obj){
-	CCLOG("onAcceptClick");
+	CCLOG("onRestart");
 	//SoundManager.playClickSound();
 	this->playLayer->createNewGame();
 	this->closeDialog();
@@ -58,7 +58,7 @@ void GameOverDialog::onHome(Ref *obj){
 
 void GameOverDialog::onShare(Ref *obj)
 {
-
+	CCLOG("onShare");
 }
 
 bool GameOverDialog::init()
@@ -71,13 +71,16 @@ bool GameOverDialog::init()
 	auto bgImage = this->bgImage;
 	auto bgMessage = bgImage->getChildByName("bg_message");
 	this->scoreLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_score"));
-	this->numberLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_number"));
-	this->bestScoreLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_new_record"));
+	this->numberLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_title"));
+	this->bestScoreLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_best_score"));
+	this->bestTitleLabel = dynamic_cast<ui::TextBMFont *>(bgMessage->getChildByName("lb_best_title"));
 
-	this->restartButton = dynamic_cast<ui::Button *>(bgImage->getChildByName("btn_accept"));
+	this->restartButton = dynamic_cast<ui::Button *>(bgImage->getChildByName("btn_restart"));
 	this->restartButton->addClickEventListener(CC_CALLBACK_1(GameOverDialog::onRestart, this));
-	this->homeButton = dynamic_cast<ui::Button *>(bgImage->getChildByName("btn_cancel"));
+	this->homeButton = dynamic_cast<ui::Button *>(bgImage->getChildByName("btn_home"));
 	this->homeButton->addClickEventListener(CC_CALLBACK_1(GameOverDialog::onHome, this));
+	this->shareButton = dynamic_cast<ui::Button *>(bgImage->getChildByName("btn_share"));
+	this->shareButton->addClickEventListener(CC_CALLBACK_1(GameOverDialog::onShare, this));
 	return true;
 }
 
