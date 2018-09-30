@@ -3,11 +3,24 @@
 #include "cocos2d.h"
 #if CC_PLATFORM_ANDROID == CC_TARGET_PLATFORM
 #include "platform\android\jni\JniHelper.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+	JNIEXPORT void Java_com_moc_g2048_AndroidUtils_doTakeScreenShot(JNIEnv *env, jobject thiz) {
+		CCLOG("Java_com_moc_g2048_AndroidUtils_doTakeScreenShot");
+		PlatformUtils::getInstance()->doTakeScreenShotAndShare();
+	}
+
+#ifdef __cplusplus
+}
 #endif
 
-
+#endif
 
 USING_NS_CC;
+
+
 
 string PlatformUtils::CLASS_DEFAULT = "com.moc.g2048.AndroidUtils";
 
@@ -63,6 +76,54 @@ void PlatformUtils::updateLeaderBoard(int mode, int score){
 #endif
 }
 
+void PlatformUtils::takeScreenShotAndShare()
+{
+	CCLOG("PlatformUtils.takeScreenShotAndShare");
+	
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t, PlatformUtils::CLASS_DEFAULT.c_str(), "checkPermission", "()B")){
+		jbooean checkPermission = t.env->CallStaticBooleanMethod(t.classID, t.methodID);
+		if (bool(checkPermission)) doTakeScreenShotAndShare();
+	}
+#else 
+	doTakeScreenShotAndShare();
+#endif
+}
+
+
+void PlatformUtils::doTakeScreenShotAndShare()
+{
+	/*CCSize size = Director::getInstance()->getWinSize();
+	auto sp = Sprite::create();
+	sp->setScale(0.25);
+
+	RenderTexture* renderTexture = RenderTexture::create(size.width, size.height, Texture2D::PixelFormat::RGBA8888);
+	renderTexture->begin();
+	Director::getInstance()->getRunningScene()->visit();
+	renderTexture->end();
+	renderTexture->saveToFile("Screenshots/snapshot.png", Image::Format::JPG, true, CC_CALLBACK_2(PlatformUtils::saveToFileCallback, this));*/
+	utils::captureScreen(CC_CALLBACK_2(PlatformUtils::saveToFileCallback, this), "snapshot.png");
+}
+
+
+
+void PlatformUtils::saveToFileCallback(bool succeed, const std::string& str)
+{
+	CCLOG("PlatformUtils.saveToFileCallback");
+	string path = FileUtils::getInstance()->getWritablePath() + "snapshot.png";
+	CCLOG("PlatformUtils.saveToFileCallback %s", path.c_str());
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t, PlatformUtils::CLASS_DEFAULT.c_str(), "shareImagePath", "(Ljava/lang/String;)V")){
+		jstring stringArg1 = t.env->NewStringUTF(path.c_str());
+		t.env->CallStaticVoidMethod(t.classID, t.methodID, stringArg1);
+	}
+
+#endif
+}
+
+
 void PlatformUtils::callAndroidFunction(string className, string methodName, 
 	string methodSignature, string parameters)
 {
@@ -110,4 +171,5 @@ PlatformUtils::~PlatformUtils()
 {
 
 }
+
 

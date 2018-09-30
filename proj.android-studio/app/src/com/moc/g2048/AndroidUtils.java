@@ -1,14 +1,20 @@
 package com.moc.g2048;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -27,6 +33,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
+import org.cocos2dx.cpp.AppActivity;
+
+import java.io.File;
+import java.io.FileOutputStream;
+
+import static android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 
 /*Created by thaod on 1/14/2018.*/
 
@@ -345,8 +358,86 @@ public class AndroidUtils {
             signInSilently();
     }
 
-    public static void callJSAddGold(int num){
-//        String str = String.format("PlatformUtils.prototype.javaCallBackAddGold(%d);", num);
-//        Cocos2dxJavascriptJavaBridge.evalString(str);
+    public static boolean checkPermission(){
+        AppActivity mAc = (AppActivity)AndroidUtils.instance.ac;
+        if(!mAc.hasWritePermissions()){
+            mAc.requestAppPermissions();
+            return false;
+        }
+
+        return true;
     }
+
+
+    public static Bitmap getScreenShot(View view) {
+        View screenView = view.getRootView();
+        screenView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
+        screenView.setDrawingCacheEnabled(false);
+        return bitmap;
+    }
+
+    public static void store(Bitmap bm, String fileName){
+        final String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
+        File dir = new File(dirPath);
+        if(!dir.exists())
+            dir.mkdirs();
+        File file = new File(dirPath, fileName);
+        try {
+            FileOutputStream fOut = new FileOutputStream(file);
+            bm.compress(Bitmap.CompressFormat.PNG, 85, fOut);
+            fOut.flush();
+            fOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void shareImagePath(String filePath){
+        doTakeScreenShot();
+        File pdfDirPath = new File(AndroidUtils.instance.ac.getFilesDir(), "Screenshots");
+        Log.d(TAG, "shareImagePath "+ filePath);
+        File file = new File(filePath);
+        AndroidUtils.instance.shareImage(file);
+    }
+
+    private void shareImage(File file){
+        Uri uri = FileProvider.getUriForFile(ac,
+                BuildConfig.APPLICATION_ID + ".provider",file);
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "2048");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, "High score");
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        intent.setFlags(FLAG_GRANT_WRITE_URI_PERMISSION );
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        try {
+            ac.startActivity(Intent.createChooser(intent, "Share Screenshot"));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(ac, "No App Available", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        for (int i = 0; i < permissions.length; i ++){
+            if(permissions[i] == Manifest.permission.WRITE_EXTERNAL_STORAGE){
+                if(grantResults[i] == PackageManager.PERMISSION_GRANTED){
+                    doTakeScreenShot();
+                    return;
+                } else {
+                    new AlertDialog.Builder(ac).setMessage(ac.getString(R.string.permission_denied)).
+                            setNeutralButton(android.R.string.ok, null).show();
+                    return;
+                }
+            }
+        }
+
+        Log.e(TAG, "onRequestPermissionsResult  permission error");
+    }
+
+    public static native void doTakeScreenShot();
 }

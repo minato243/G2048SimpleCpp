@@ -2,6 +2,8 @@
 #include "cocostudio\ActionTimeline\CSLoader.h"
 #include "base\GameConstant.h"
 #include "SceneManager.h"
+#include "base\SoundManager.h"
+#include "base\PlatformUtils.h"
 
 GameOverDialog::GameOverDialog(){
 	CCLOG("new GameOverDialog");
@@ -45,12 +47,13 @@ void GameOverDialog::setCallBackFunc(CCCallFunc *callBackFunc){
 
 void GameOverDialog::onRestart(Ref *obj){
 	CCLOG("onRestart");
-	//SoundManager.playClickSound();
+	SoundManager::playClickSound();
 	this->playLayer->createNewGame();
 	this->closeDialog();
 }
 
 void GameOverDialog::onHome(Ref *obj){
+	SoundManager::playClickSound();
 	this->closeDialog();
 	SceneManager::getInstance()->changeScene(MENU_SCENE);
 }
@@ -59,6 +62,9 @@ void GameOverDialog::onHome(Ref *obj){
 void GameOverDialog::onShare(Ref *obj)
 {
 	CCLOG("onShare");
+	SoundManager::playClickSound();
+	PlatformUtils::getInstance()->takeScreenShotAndShare();
+
 }
 
 bool GameOverDialog::init()

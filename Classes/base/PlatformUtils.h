@@ -2,8 +2,10 @@
 #define PlatformUtil_h__
 
 #include <string>
+#include "2d\CCRenderTexture.h"
 
 using namespace std;
+USING_NS_CC;
 
 class PlatformUtils{
 public:
@@ -23,8 +25,11 @@ public:
 	void showBanner();
 	void hideBanner();
 	void updateLeaderBoard(int mode, int score);
+	void takeScreenShotAndShare();
+	void doTakeScreenShotAndShare();
 	void callAndroidFunction(std::string className, std::string methodName, std::string methodSignature, std::string parameters = "");
-	
+	void saveToFileCallback(bool succeed, const std::string& str);
+
 	static PlatformUtils *getInstance();
 	static void destroyInstance();
 };

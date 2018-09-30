@@ -13,4 +13,5 @@
     <string name="error_opening_filename">There was a problem opening the current save file!</string>
     <string name="show_snapshots_error">There was a problem getting the select snapshot intent!</string>
     <string name="write_snapshot_error">There was a problem writing the snapshot!</string>
+    <string name="permission_denied">Permission denied</string>
 </resources>
