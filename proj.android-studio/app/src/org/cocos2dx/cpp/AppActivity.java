@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -96,8 +97,8 @@ public class AppActivity extends Cocos2dxActivity {
 
         ActivityCompat.requestPermissions(this,
                 new String[] {
-                        Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
                 }, REQUEST_WRITE_STORAGE_REQUEST_CODE); // your request code
     }
 
@@ -111,6 +112,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.d("AppActivity", "onRequestPermissionsResult");
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_WRITE_STORAGE_REQUEST_CODE){
             AndroidUtils.instance.onRequestPermissionsResult(requestCode, permissions, grantResults);

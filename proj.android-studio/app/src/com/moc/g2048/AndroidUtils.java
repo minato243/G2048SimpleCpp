@@ -245,6 +245,7 @@ public class AndroidUtils {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
+        Log.d(TAG, "onActivityResult");
         if(requestCode == RC_SIGN_IN){
             Log.d(TAG, "onActivityResult data ="+data.toString());
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -359,6 +360,7 @@ public class AndroidUtils {
     }
 
     public static boolean checkPermission(){
+        Log.d(TAG, "checkPermission");
         AppActivity mAc = (AppActivity)AndroidUtils.instance.ac;
         if(!mAc.hasWritePermissions()){
             mAc.requestAppPermissions();
@@ -394,7 +396,7 @@ public class AndroidUtils {
     }
 
     public static void shareImagePath(String filePath){
-        doTakeScreenShot();
+
         File pdfDirPath = new File(AndroidUtils.instance.ac.getFilesDir(), "Screenshots");
         Log.d(TAG, "shareImagePath "+ filePath);
         File file = new File(filePath);
@@ -423,8 +425,10 @@ public class AndroidUtils {
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
+        Log.d(TAG,"onRequestPermissionsResult");
         for (int i = 0; i < permissions.length; i ++){
-            if(permissions[i] == Manifest.permission.WRITE_EXTERNAL_STORAGE){
+            Log.d(TAG, permissions[i]);
+            if(permissions[i].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
                 if(grantResults[i] == PackageManager.PERMISSION_GRANTED){
                     doTakeScreenShot();
                     return;

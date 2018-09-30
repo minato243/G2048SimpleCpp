@@ -82,8 +82,8 @@ void PlatformUtils::takeScreenShotAndShare()
 	
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	JniMethodInfo t;
-	if (JniHelper::getStaticMethodInfo(t, PlatformUtils::CLASS_DEFAULT.c_str(), "checkPermission", "()B")){
-		jbooean checkPermission = t.env->CallStaticBooleanMethod(t.classID, t.methodID);
+	if (JniHelper::getStaticMethodInfo(t, PlatformUtils::CLASS_DEFAULT.c_str(), "checkPermission", "()Z")){
+		jboolean checkPermission = t.env->CallStaticBooleanMethod(t.classID, t.methodID);
 		if (bool(checkPermission)) doTakeScreenShotAndShare();
 	}
 #else 
