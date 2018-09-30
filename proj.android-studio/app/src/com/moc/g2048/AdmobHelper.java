@@ -41,7 +41,7 @@ public class AdmobHelper {
         mAdview.setAdUnitId(ctx.getString(R.string.admob_banner));
 
         AdRequest.Builder adBuilder= new AdRequest.Builder();
-        adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
+        //adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
         AdRequest adRequest = adBuilder.build();
         mAdview.loadAd(adRequest);
 
@@ -81,7 +81,7 @@ public class AdmobHelper {
     private void initVideoReward(final Context ctx){
         mRewardVideoAd = MobileAds.getRewardedVideoAdInstance(ctx);
         AdRequest.Builder adBuilder = new AdRequest.Builder();
-        adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
+        //adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
         mRewardVideoAd.loadAd(ctx.getString(R.string.admob_video_reward), adBuilder.build());
         mRewardVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
 
@@ -110,7 +110,6 @@ public class AdmobHelper {
             public void onRewarded(RewardItem rewardItem) {
                 Log.d(TAG, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
                         rewardItem.getAmount());
-                AndroidUtils.callJSAddGold(rewardItem.getAmount());
             }
 
             @Override
@@ -131,7 +130,7 @@ public class AdmobHelper {
         mInterstitialAd = new InterstitialAd(ctx);
         mInterstitialAd.setAdUnitId(ctx.getString(R.string.admob_interstitial));
         AdRequest.Builder adBuilder = new AdRequest.Builder();
-        adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
+        //adBuilder.addTestDevice("CC81B0FF3A28C8DFBC868A3CCC677792");
         mInterstitialAd.loadAd(adBuilder.build());
 
         mInterstitialAd.setAdListener(new AdListener(){
